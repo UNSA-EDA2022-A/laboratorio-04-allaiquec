@@ -106,7 +106,12 @@ public class SinglyLinkedList<T> {
     // Inserta un nuevo nodo en una posicion especifica de la lista
     public void insertNth(T data, int position) {
     //FALTA VER QUE LA LISTA NO ESTÉ VACIA
-    	//FALTA VER QUE LA POSICIO EXISTA
+    	//FALTA VER QUE LA POSICIOn EXISTA
+    	//FALTA VER si es adelante EXISTA
+    	
+    	if(position ==0) {
+    		 addFirst(data);
+    	}else {
     	Node<T> auxiliar = first;
     	int i = 0;
     	while(auxiliar !=null && i <= position-1) {
@@ -121,10 +126,8 @@ public class SinglyLinkedList<T> {
     		i++;
     	}
     	size++;
+    	}
     	
-    	
-   
-
     }
 
     // Elimina el nodo de una posicion especifica de la lista
