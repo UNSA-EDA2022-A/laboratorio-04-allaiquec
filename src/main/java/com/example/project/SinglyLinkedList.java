@@ -131,26 +131,27 @@ public class SinglyLinkedList<T> {
 
     // Elimina el nodo de una posicion especifica de la lista
     public void deleteNth(int position) {
-        if (isEmpty())
+       if (isEmpty())
             return;
-    	
-    	Node<T> auxiliar = first;
-    	int i = 0;
-    	while(auxiliar !=null && i <= position-1) {
-    		if(i == position-1) {
-    			//Node<T> nuevo = new Node<T>(data,auxiliar.getNext());
-    			auxiliar.setNext((auxiliar.getNext()).getNext());
+    	if(position == 0) {
+    		removeFirst();
+    	}else {
+    		Node<T> auxiliar = first;
+    		int i = 0;
+    		while(auxiliar !=null && i <= position-1) {
+    			if(i == position-1) {
+    				//Node<T> nuevo = new Node<T>(data,auxiliar.getNext());
+    				auxiliar.setNext((auxiliar.getNext()).getNext());
     			
-    		}else {
-    			auxiliar= auxiliar.getNext();
-    		}
+    			}else {
+    				auxiliar= auxiliar.getNext();
+    			}
     		
-    		i++;
+    			i++;
+    		}
+    		size--;
     	}
-    	size--;
-    	
     }
-
     public static void main(final String[] args) {
 
         // testExercicio1();
