@@ -1,6 +1,6 @@
 package com.example.project;
 
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T extends Comparable<T>> {
     private Node<T> first; // Primero nodo de la lista
     private int size; // Tamano de la lista
 
@@ -100,19 +100,67 @@ public class SinglyLinkedList<T> {
 
     // Elimina aquellos nodos de la lista que esten duplicados
     public void deleteDuplicates() {
-
-    }
-
+    	//ultimo valor del arreglo
+    	T valor = getLast();  
+    	Node<T> auxiliar = first;
+    	//recorriendo lista
+    	int i =0;
+    	while(auxiliar.getNext() !=null) {
+    		if((auxiliar.getValue()).compareTo(valor)== 0){   			
+    			deleteNth(size-1);
+    			//recursividad
+    			deleteDuplicates();   			
+    			break;
+    		}
+    		auxiliar = auxiliar.getNext();
+    		i++;
+    	}
+    }	
     // Inserta un nuevo nodo en una posicion especifica de la lista
     public void insertNth(T data, int position) {
-
+   	    //Si es vacio
+    	if (isEmpty())
+            return;
+    	if(position == 0) {
+    		 addFirst(data);
+    	} else {
+    	    Node<T> auxiliar = first;
+    	    int i = 0;
+    	    while(auxiliar !=null && i <= position-1) {
+    		    if(i == position-1) {
+    			    Node<T> nuevo= new Node<T>(data,auxiliar.getNext());
+    			    auxiliar.setNext(nuevo);
+    		    }else {
+    			    auxiliar= auxiliar.getNext();
+    		    }
+    		    i++;
+    	    }
+    	    size++;
+        }
+    	
     }
 
     // Elimina el nodo de una posicion especifica de la lista
     public void deleteNth(int position) {
-
+        //Si es vacio
+       if (isEmpty())
+            return;
+        //Si es la posicion inicial
+    	if(position == 0) {
+    		removeFirst();
+    	} else {
+    		Node<T> auxiliar = first;
+    		int i = 0;
+    		while(auxiliar !=null && i <= position-1) {
+    			if(i == position-1) 
+    				auxiliar.setNext((auxiliar.getNext()).getNext());
+    			else 
+    				auxiliar= auxiliar.getNext();
+    			i++;
+    		}
+    		size--;
+    	}
     }
-
     public static void main(final String[] args) {
 
         // testExercicio1();
